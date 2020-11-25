@@ -26,22 +26,34 @@ function onDeviceReady() {
 
     console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
     document.getElementById('deviceready').classList.add('ready');
-    document.getElementById("click_me").addEventListener("click", click); 
 
-    function click() {
-    	var json1 = {foo: "bar"};
-		var json2 = {bar: "foo"};
-		Cordova.exec(success, error, "CustomPlugin", "coolMethod", [json1, json2]);
+    document.getElementById("connect_spotify").addEventListener("click", connect);
+    document.getElementById("play_spotify").addEventListener("click", play);
+    document.getElementById("pause_spotify").addEventListener("click", pause);
+
+    function connect() {
+    	var CLIENT_ID = "1d1b155c59cd4a719f1e1be5b28a4b83";
+        var REDIRECT_URI = "https://www.crymzee.com";
+        var request = {"client_id": CLIENT_ID, "redirection_url": REDIRECT_URI}
+		Cordova.exec(connectionSuccessCallback, error, "CustomPlugin", "ConnectionRequest", [request]);
 	};
-	function success(result) {
+
+	function play() {
+	    var request = {"track": "spotify:track:3qRNQHagYiiDLdWMSOkPGG"};
+	    Cordova.exec(generalSuccess, error, "CustomPlugin", "PlayRequest", [request]);
+	}
+
+	function pause() {
+        Cordova.exec(generalSuccess, error, "CustomPlugin", "PauseRequest", []);
+	}
+
+	function connectionSuccessCallback(result) {
 		alert(result);
 	}
-
 	function error(result) {
-		alert('The error is: ' + JSON.stringify(result));
+		alert(result);
 	}
-
-	// setTimeout(function() {
-	// 	Cordova.exec(click, null, "CordovaPlugin", "coolMethod", [111, 222]);
-	// }, 5000);
+	function generalSuccess(result) {
+	    alert(result);
+	}
 }
