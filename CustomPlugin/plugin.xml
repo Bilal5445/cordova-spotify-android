@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin
+	id="info.androidabcd.plugins.custom"
+	version="1.0.0"
+	xmlns="http://apache.org/cordova/ns/plugins/1.0"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>CustomPlugin</name>
+	<js-module
+		name="CustomPlugin"
+		src="www/CustomPlugin.js">
+		<clobbers target="cordova.plugins.CustomPlugin" />
+	</js-module>
+	<platform name="android">
+		<config-file parent="/*" target="res/xml/config.xml">
+			<feature name="CustomPlugin">
+				<param name="android-package" value="info.androidabcd.plugins.custom.CustomPlugin" />
+			</feature>
+		</config-file>
+		<config-file parent="/*" target="AndroidManifest.xml">
+		</config-file>
+
+		<framework src="src/android/spotify-sdk.gradle" custom="true" type="gradleReference"/>
+		<lib-file src="src/android/spotify-app-remote-release-0.7.1.aar" target="libs/spotify-app-remote.aar"/>
+
+		<source-file 
+			framework="true"
+			src="src/android/CustomPlugin.java"
+			target-dir="src/info/androidabcd/plugins/custom/CustomPlugin" />
+	</platform>
+</plugin>

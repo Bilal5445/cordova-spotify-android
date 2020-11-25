@@ -1,0 +1,17 @@
+{
+  "name": "info.androidabcd.plugins.custom",
+  "version": "1.0.0",
+  "description": "This plugin will add two integer and will show the result in application",
+  "cordova": {
+    "id": "info.androidabcd.plugins.custom",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Bilal Saleem",
+  "license": "ISC"
+}
